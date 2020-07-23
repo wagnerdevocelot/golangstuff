@@ -1,0 +1,7 @@
+1 - Escreva a estrutura de um programa Go
+2 - Defina uma varável global chamada bolsa, o conteúdo será o texto "Bag" (String)
+3 - Defina uma variavel com a marmotinha chamada pokebola e recebera o valor 5, (int)
+4 - Imprima usando as variáveis com a frase "Sua bag tem 5 pokebolas" 
+5 - Reatribua um novo valor a variavel pokebola que agora recebera o valor 12 (int)
+6 - Repita o passo 4
+

@@ -1,0 +1,165 @@
+Ultimamente me deparei com um curso muito interessante sobre a linguagem go
+
+E agora estudando mais sobre dicidi montar um diário de estudos baseado nesse curso
+
+A primeira coisa que irei fazer é dar uma introdução a como se parece um hello world em go
+Para iniciantes pode parecer algo um pouco diferente ou semelhante dependendo do seu background
+com programação.
+
+A linguagem Go vinda de um cenário do Google onde os devs estavam tendo problemas com a complexidade
+de código C++
+Então baseado nisso a gente ja tem uma ideia de qual a finalidade dessa linguagem, pois semelhante ao C++
+ela resolve problemas de performance mantendo uma sintaxe relativamente simples.
+E relativamente não apenas como figura de linguagem, porque ai entra a questão do background, se você iniciou
+com uma linguagem como ruby ou python que são interpretadas e tem tipagem dinâmica Go vai parecer estranha
+a primeira vista. E com esse artigo a ideia é que eu consiga te deixar mais confortável com uma linguagem
+compilada com uma sintaxe mais parecida com C
+
+Então um Hello World em Go vai parecer com isso:
+
+package main
+
+import "fmt"
+
+func main() {
+	fmt.Println("Hello, 世界")
+}
+
+
+Eu vou fazer relacionamentos com coisas parecidas de outras linguagens, porem vou manter simples pra que
+mesmo que você nunca tenha programado uma linha de código ainda consiga entender, essa tarefa parece ser 
+a mais dificil nesse caso mas se tem uma coisa que se aprender cedo em programação é que dividindo problemas
+em pedaços pequenos os objetivos são alcançados sem muita dor.
+
+na primeira linha a gente vai ver 
+
+# package main
+
+O Go ou Golang ou Google Go ou como você achar melhor tem uma gama de funcionalidades no seu pacote principal
+então é muito comum se resolver problemas usando esses pacotes que já vem com o Go e evita-se usar pacotes
+de terceiros como como as 'gems' em Ruby que são pedaços de código feito pela comunidade que você importa de
+fontes externas.
+
+Mas pra quem nunca importou um pacote usando uma linguagem antes o conceito é bem simples. Quando você instala
+o Go ele vem com essas funcionalidades e elas ficam dentro de algumas pastas onde você instalou o Go.
+quando escrevemos package main estamos dizendo "Hey go, eu vou precisar da sua ajuda aqui me da uns códigos
+seus já prontos?" então todas as funcionalidades que esse pacote tem estarão disponiveis para uso.
+
+Logo em seguida teremos 
+
+# import 'fmt'
+
+para quem fez um curso de python é impossivel não ter usado a biblioteca 'Math' que é um conjunto de 
+funcionalidades para calculos matemáticos e vem com funcções prontas como Math.sqrt
+que seria mais ou menos "Python, importa aquela biblioteca de matmatica pra mim e eu vou usar essa função
+sqrt, (square root = raiz quadrada) pra descobrir a raiz quadrada de um numero aqui".
+
+Então fica claro que o import trás funcionalidades prontas para o nosso código. 
+
+Mas ai fica um pouco complicado porque a gente ja chamou o package main, tem que importar 'fmt' tbm?
+O fmt ele vem de dentro do package main, então significa que de dentro do main eu quero só o fmt
+eu não quero que o meu código infira que eu posso ter todas as bibliotecas a disposição o tempo todo
+eu uso só o que eu preciso e se precisar de algo mais eu importo algo novo.
+
+Essa aqui é uma lista com todas as bibliotecas que estão no stdlib (o pacote padrão que ja vem com a linguagem)
+O Main, o prório ele mesmo, tudo isso.
+https://golang.org/pkg/#stdlib
+
+Se você procurar nessa lista, vai encontrar o fmt, e a explicação é que ele é um formatador de inputs e outputs
+e pra quem programa a ficha já caiu para quem iniciou agora, I/O é entrada e saida de dados. 
+
+Entrada = o computador recebe uma informação
+Saida = o computador devolve uma informação
+
+E se a ideia é criar um programa que escreve algo na tela como 'Hello, World"
+é perfeitamente compreenssivel o porque de precisarmos importar lib (library = biblioteca)
+
+em seguida temos 
+
+# func main()
+
+ainda é cedo para falar sobre funções, mas func main() indica que é aqui que o nosso código inicia
+todo o processamento dos dados, a nossa lógica é feita aqui dentro entre a primeira e segunda chave
+
+{ 
+
+
+}
+
+Essa declaração de função é muito semelhante a funcções com javascript então pra quem ta desenvolvendo web
+ta em casa. Pra quem desenvolve com ruby pode estranhar ter que puxar uma chave assim e ode achar que
+a sintaxe é prejudicada, mas a gente abre chave o tempo todo, a diferença é que quando a gente fecha elas em 
+ruby ela se chama 'end'
+
+aqui um metodo em ruby
+
+def metodo(param, param2)
+      param + param2
+end
+
+então desde que você veja a chave como uma representação de começo e fim essa ideia de que a sintaxe não é
+'elegante' vai sair da tua cabeça e pode te incentivar até a mexer com C que é a linguagem na qual o ruby
+foi escrito. Inclusive usar C em conjunto com Ruby pode ser uma ideia interessante para resolver problemas de
+desempenho, não que Ruby seja ruim, mas toda linguagem interpretada que tem uma sintaxe bonitinha e fácil de
+aprender vai ter seu ponto fraco.
+
+# fmt.Println()
+
+agora chegamos ao miolo do nosso código aqui ta o que o código realmente faz e tudo que falei acima é o que se
+faz necessario para que esse trecho funcione.
+
+como importamos o fmt nada mais juntos que utilizarmos, então o fmt sendo o padrãode formatação para entrada
+e saida de dados possui diversas funções e a que está sendo utilizada nesse momento é a Println
+
+Println é uma função de saida de dados ou seja;
+Saida = o computador devolve uma informação
+
+quando essa função é usada com 'ln' no final quer dizer que após a saida dos dados ele iŕa pular uma linha
+isso porque o fmt formata os dados tambem ele não os imprime.
+
+em Ruby quando imprimimos algum dado assim
+
+puts "Hello, World"
+
+por padrão ele funciona como o Println, só que nem sempre a gente quer que uma linha seja pulada então você
+teria que chamar um segundo metodo só pra comer a linha da impressão é mole? kkk
+percebe como é estranho você usar um metodo que imprime algo e por padrão ele pula uma linha e pra não ter
+essa linha pulada vc precisa de um segundo metodo pra comer essa linha que o print pulou?
+
+puts "Hello, World".chomp # nesse caso o chomp é o metodo que come a linha, é um bom nome pra um metodo com
+essa funcionalidade.
+
+me lembra um pouco uma funcionalida de um programa que eu uso chamado youtube-dl ele serve pra vc baixar
+conteudo do youtube através da linha de comando, eu uso bastante pra baixar audio de videclipes mas ele faz
+essa coisa bizarra que ao invés dele baixar só o audio, ele baixa o video, extrai o audio e depois ele deleta 
+o video. kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
+Se esse problema fosse resolvido seria mais interessante pois ai quando eu quisesse só o audio de algo levaria
+muito menos tempo pra fazer o download.
+
+Então essas coisas pequenas que são pensadas durantes o desenvolvimento de um software dizem muito sobre como
+eles serão usados e quais resultados eles trarão para quem os utilizam.
+
+E não pense que to cuspindo no prato do Ruby, tenho certeza que exite um motivo pra que as coisas funcionem do
+jeito que funcionam nele e recomendo até mais que Go para programadores de primeira viagem pois escrever com Ruby
+é muito parecido com falar ingles é realmente muito simples e pra uma linguagem de tão alto nivel ela faz muita
+bruxaria hahah.
+
+Voltando ao exemplo de Go e pegando a ponte com esse exemplo de Ruby o 'fmt' possui mais funções de saida de
+dados então se não temos interesse que nosso programa pule a linha no final você não precisa chamar uma nova
+função, mas chamar uma função diferente o 'Print'.
+
+Então teremos não só essa mas outras funções para exibir dados de diferentes formas.
+
+Toda função geralmente vem acompanhada de '()' parenteses, pois na maioria das vezes a sua função espera um 
+parâmetro, ela espera que vc passe algo pra ela processar, pois lembrando quando chamamos fmt.Println
+o que estamos fazendo é chamando um bloco de código que implementa essa funcionalidade de entrada e saida de
+dados formatados, então o fmt.Println é uma abstração do que ele realmente é, pra que você como programador
+não tenha que implementar essa mesma função toda vez que precisar.
+
+se a função é para imprimir algo, e ela espera algo como parâmetro temos que dar isso a ela e nesse caso é o 
+"Hello World" e por isso ele vai dentro dos parenteses.
+Como queremos imprimir caracteres que formam uma frase precisamos passá-los dentro de " " aspas pois fora delas
+o Go interpretaria Hello World como um parametro que não comtempla caracteres e ai teriamos um erro.
+
+se você olha agora só sobra a ultima chave que pra todo bom rubysta é um end
+
