@@ -28,6 +28,11 @@ func main() {
 	// chamada e retorno da função em Json
 	structoJSON(darthVader)
 	// ==> {"Nome":"Darth","Sobrenome":"Vader","Idade":40,"Profissão":"Lord","ContaBancária":109999}
+
+	// slice com o json cru
+	slby := []byte(`{"Nome":"Darth","Sobrenome":"Vader","Idade":40,"Profissão":"Lord","ContaBancária":109999}`)
+	// função convertendo o slice pra struct
+	jsonTos(slby, &darthVader)
 }
 
 // função recebe struct pessoa como parametro
@@ -42,4 +47,18 @@ func structoJSON(p pessoa) {
 
 	// saida da variável valor
 	fmt.Println(string(v))
+}
+
+// faz o inverso, recebe um slice of bytes com o json cru mais um ponteiro do struct com seu formato
+func jsonTos(sb []byte, p *pessoa) {
+	// função unmarshal recebe o slice mais a variável do struct
+	err := json.Unmarshal(sb, &p)
+	// condição de erro
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// json convertido para struct, que poder ser chamado pelos seus atributos
+	fmt.Println(p)
+	fmt.Println(p.Sobrenome)
 }
