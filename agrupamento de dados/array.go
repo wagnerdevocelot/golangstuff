@@ -12,7 +12,7 @@ func main() {
 	//fatioPassou()
 	//makingAMake()
 	//slice2d()
-	mapa()
+	//mapa()
 }
 
 func mapa() {
