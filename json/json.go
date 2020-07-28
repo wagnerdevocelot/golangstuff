@@ -38,7 +38,7 @@ func main() {
 // função recebe struct pessoa como parametro
 func structoJSON(p pessoa) {
 	// função marshal devolve dois valores um erro e os dados em si
-	// json.marchal recebe o parametro p da struct pessoa
+	// json.marshal recebe o parametro p da struct pessoa
 	v, err := json.Marshal(p)
 	// caso o erro seja diferente de nil printa o erro
 	if err != nil {
