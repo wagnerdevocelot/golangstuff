@@ -28,4 +28,36 @@ func main() {
 	fmt.Println(<-canal2)
 	// ==> 50
 
+	// ========================== canais direcionais ================================
+
+	// é possivel ter canais que recebem e canais que só enviam dados
+
+	canaldirecional := make(chan int)
+
+	// pelo menos uma das funções deve ser uma go func para que as funções rodem em paralelo
+
+	go send(canaldirecional)
+
+	receiver(canaldirecional)
+	// ==> 33
+
+	// conversão de canais pode ser feita usando a notação de conversão de tipos
+	// Porem isso só pode ser feito a partir de canais bidirecionais
+	conversãoSend := (<-chan int)(canaldirecional)
+	fmt.Printf("%T\n", conversãoSend)
+	// ==> <-chan int
+	conversãoReceiver := (chan<- int)(canaldirecional)
+	fmt.Printf("%T\n", conversãoReceiver)
+	// ==> chan<- int
+
+}
+
+// send usa um canal bidirecional e transforma ele em um canal que envia dados
+func send(s chan<- int) {
+	s <- 33
+}
+
+// receiver usa um canal bidirecional como parametro e o transforma em um receptor de dados
+func receiver(r <-chan int) {
+	fmt.Println(<-r)
 }
