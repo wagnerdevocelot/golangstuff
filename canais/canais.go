@@ -50,6 +50,28 @@ func main() {
 	fmt.Printf("%T\n", conversãoReceiver)
 	// ==> chan<- int
 
+	// ========================== range & close ================================
+
+	forCanal := make(chan int)
+
+	go loopSend(10, forCanal)
+
+	// é possivel usar range sobre um canal, porém não tem (i) apenas value(v)
+	for v := range forCanal {
+		fmt.Println("recebido do canal:", v)
+	}
+	// recebido do canal: 0
+	// recebido do canal: 1
+	// recebido do canal: 2
+	// recebido do canal: 3
+	// recebido do canal: 4
+	// recebido do canal: 5
+	// recebido do canal: 6
+	// recebido do canal: 7
+	// recebido do canal: 8
+	// recebido do canal: 9
+	// recebido do canal: 10
+
 }
 
 // send usa um canal bidirecional e transforma ele em um canal que envia dados
@@ -60,4 +82,14 @@ func send(s chan<- int) {
 // receiver usa um canal bidirecional como parametro e o transforma em um receptor de dados
 func receiver(r <-chan int) {
 	fmt.Println(<-r)
+}
+
+// loopSend faz envios de (i) para o chanel(s) recebido em parametro, iterando sobre o valor de (t)
+func loopSend(t int, s chan<- int) {
+	for i := 0; i <= t; i++ {
+		s <- i
+	}
+	// necessário fechar um canal após a iteração, caso não seja fechado um range pode ficar esperando
+	// um novo valor quando não existem mais valores e dar erro de deadlock
+	close(s)
 }
